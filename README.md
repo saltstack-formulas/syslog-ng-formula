@@ -1,2 +1,0 @@
-syslog-ng-formula
-=================
