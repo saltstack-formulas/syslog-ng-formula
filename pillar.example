@@ -1,4 +1,9 @@
 syslog_ng:
+  module:
+  - tfson
+  include:
+  - /etc/syslog-ng/conf.d/
+  version: 3.5
   options:
   - threaded: yes
   - use_dns: no
