@@ -26,3 +26,8 @@ Install the ``sylog-ng`` package.
 Install and configure the ``syslog-ng`` package.
 
 note: if the first character of a string is '=' the string is treated as a literal (not ecapsulated in quotes)
+
+``syslog_ng.packages``
+-----------
+
+Install optional packages which may provide additional functionality.
