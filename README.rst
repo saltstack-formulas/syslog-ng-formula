@@ -18,7 +18,7 @@ Available states
 ``syslog_ng``
 -------
 
-Install the ``sylog-ng`` package.
+Install the ``syslog-ng`` package.
 
 ``syslog_ng.config``
 -----------
