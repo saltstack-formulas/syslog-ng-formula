@@ -7,7 +7,7 @@ syslog_ng.conf:
   file.managed:
     - name: {{ syslog_ng.syslog_ng_config }}
     - source: {{ syslog_ng.syslog_ng_config_src }}
-    - template: mako
+    - template: jinja
     - user: root
     - group: root
     - mode: 644
