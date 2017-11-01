@@ -2,7 +2,9 @@ syslog_ng:
   module:
   - tfson
   include:
-  - /etc/syslog-ng/conf.d/
+  - scl.conf
+  last_include:
+  - /etc/syslog-ng/conf.d/*.conf
   version: 3.5
   options:
   - threaded: yes
@@ -12,7 +14,7 @@ syslog_ng:
   - chain_hostnames: no
   - check_hostname: no
   source:
-  - s_internal: 
+  - s_internal:
     - internal: null
   - s_local:
     - unix-stream: /dev/log

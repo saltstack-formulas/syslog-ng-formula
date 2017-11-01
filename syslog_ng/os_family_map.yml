@@ -21,6 +21,9 @@ Debian:
   include:
     - scl.conf
 
+  last_include:
+    - /etc/syslog-ng/conf.d/*.conf
+
   source:
     - s_src:
       - system: null
