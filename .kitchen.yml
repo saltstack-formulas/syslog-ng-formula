@@ -31,9 +31,6 @@ provisioner:
       base:
         '*':
           - syslog_ng
-    syslog_ng.sls:
-      syslog_ng:
-        foo: bar
 
 platforms:
   - name: <%= distrib %>-<%= codename %>
