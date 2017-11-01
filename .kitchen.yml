@@ -1,0 +1,49 @@
+<%
+distrib, infos    = ENV.fetch('DISTRIB', 'debian:stretch/9').split(':')
+codename, version = infos.split('/')
+%>
+---
+driver:
+  name: docker
+  use_sudo: false
+
+provisioner:
+  name: salt_solo
+  formula: syslog_ng
+
+  # Install Salt from official repositories
+  salt_install: apt
+  salt_version: latest
+  salt_apt_repo: http://repo.saltstack.com/apt/<%= distrib %>/<%= version %>/amd64
+  salt_apt_repo_key: http://repo.saltstack.com/apt/<%= distrib %>/<%= version %>/amd64/latest/SALTSTACK-GPG-KEY.pub
+
+  # Don't install Chef
+  require_chef: false
+
+  # Configure Salt
+  state_top:
+    base:
+      '*':
+        - syslog_ng.config
+
+  pillars:
+    top.sls:
+      base:
+        '*':
+          - syslog_ng
+    syslog_ng.sls:
+      syslog_ng:
+        foo: bar
+
+platforms:
+  - name: <%= distrib %>-<%= codename %>
+    driver_config:
+      image: "<%= distrib %>:<%= codename %>"
+      platform: <%= distrib %>
+
+verifier:
+  name: inspec
+  format: progress
+
+suites:
+  - name: syslog_ng
