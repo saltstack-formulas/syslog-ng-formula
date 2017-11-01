@@ -14,7 +14,7 @@ Debian:
     - use_fqdn: no
     - owner: root
     - group: adm
-    - perm: 0640
+    - perm: =0640
     - stats_freq: 0
     - bad_hostname: "^gconfd$"
 
