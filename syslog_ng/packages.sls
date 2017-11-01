@@ -1,6 +1,5 @@
 {% from "syslog_ng/map.jinja" import syslog_ng with context %}
 
-
 include:
   - syslog_ng
 
