@@ -5,4 +5,5 @@ wheezy: {}
 
 jessie: {}
 
-stretch: {}
+stretch:
+  version: 3.8
