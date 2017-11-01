@@ -1,20 +1,21 @@
-{% set syslog_ng = salt['grains.filter_by']({
-    'Debian': {
-        'package': 'syslog-ng',
-        'service': 'syslog-ng',
-        'syslog_ng_config': '/etc/syslog-ng/syslog-ng.conf',
-        'syslog_ng_config_src': 'salt://syslog_ng/files/syslog-ng.conf',
-    },
-    'Gentoo': {
-        'package': 'app-admin/syslog-ng',
-        'service': 'syslog-ng',
-        'syslog_ng_config': '/etc/syslog-ng/syslog-ng.conf',
-        'syslog_ng_config_src': 'salt://syslog_ng/files/syslog-ng.conf',
-    },
-    'RedHat': {
-        'package': 'syslog-ng',
-        'service': 'syslog-ng',
-        'syslog_ng_config': '/etc/syslog-ng/syslog-ng.conf',
-        'syslog_ng_config_src': 'salt://syslog_ng/files/syslog-ng.conf',
-    },
-}, merge=salt['pillar.get']('syslog_ng:lookup')) %}
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{% import_yaml "syslog_ng/defaults.yml" as defaults %}
+{% import_yaml "syslog_ng/os_family_map.yml" as os_family_map %}
+{% import_yaml "syslog_ng/os_codename_map.yml" as os_codename_map %}
+
+{# get the settings for the os_family grain #}
+{% set osfam = salt['grains.filter_by'](os_family_map) or {} %}
+
+{# get the settings for the oscodename grain, os_family data will override oscodename data #}
+{% set oscode = salt['grains.filter_by'](os_codename_map, grain='oscodename', merge=osfam) or {} %}
+
+{# merge the os family/os codename specific data over the defaults #}
+{% do defaults.syslog_ng.update(oscode) %}
+
+{# merge the pillar:lookup dict into the defaults/os specific dict #}
+{% set lookup = salt['pillar.get']('syslog_ng:lookup', default=defaults.syslog_ng, merge=True) %}
+
+{# merge the actual syslog_ng pillar into the above combined dict #}
+{% set syslog_ng = salt['pillar.get']('syslog_ng', default=lookup, merge=True) %}
