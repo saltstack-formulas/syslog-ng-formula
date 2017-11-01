@@ -18,6 +18,9 @@ Debian:
     - stats_freq: 0
     - bad_hostname: "^gconfd$"
 
+  include:
+    - scl.conf
+
   source:
     - s_src:
       - system: null
