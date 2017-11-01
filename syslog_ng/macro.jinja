@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{%- macro rule_builder(rule) -%}
+    {%- if rule is none -%}
+    {%- elif rule is sameas true -%}
+yes
+    {%- elif rule is sameas false -%}
+no
+    {%- elif rule is number -%}
+{{ rule }}
+    {%- elif rule is mapping -%}
+        {%- for k, v in rule.items() -%}
+{{ k }}({{ rule_builder(v) }})
+        {%- endfor -%}
+    {%- elif rule is iterable and rule is not string -%}
+        {%- for v in rule -%}
+{{ rule_builder(v) }}
+        {%- endfor -%}
+    {%- else -%}
+        {%- if rule[0] == '=' -%}
+{{ rule[1:] }}
+        {%- else -%}
+"{{ rule }}"
+        {%- endif -%}
+    {%- endif -%}
+{%- endmacro -%}
