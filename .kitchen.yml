@@ -26,11 +26,20 @@ provisioner:
       '*':
         - syslog_ng.config
 
+<% if %w[wheezy jessie].include?(codename) %>
   pillars:
     top.sls:
       base:
         '*':
           - syslog_ng
+    syslog_ng.sls:
+      syslog_ng:
+        source:
+          - s_src:
+            - unix-stream:
+              - /dev/log
+            - internal: null
+<% end %>
 
 platforms:
   - name: <%= distrib %>-<%= codename %>
