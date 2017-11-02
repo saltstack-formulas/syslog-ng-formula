@@ -18,12 +18,6 @@ Debian:
     - stats_freq: 0
     - bad_hostname: "^gconfd$"
 
-  include:
-    - scl.conf
-
-  last_include:
-    - /etc/syslog-ng/conf.d/*.conf
-
   source:
     - s_src:
       - system: null

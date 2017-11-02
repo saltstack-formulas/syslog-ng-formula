@@ -1,9 +1,25 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 
-wheezy: {}
+wheezy:
+  version: 3.3
+  include:
+    - scl.conf
+    - '`scl-root`/system/tty10.conf'
+  last_include:
+    - /etc/syslog-ng/conf.d/
 
-jessie: {}
+jessie:
+  version: 3.5
+  include:
+    - scl.conf
+    - '`scl-root`/system/tty10.conf'
+  last_include:
+    - /etc/syslog-ng/conf.d/*.conf
 
 stretch:
   version: 3.8
+  include:
+    - scl.conf
+  last_include:
+    - /etc/syslog-ng/conf.d/*.conf
