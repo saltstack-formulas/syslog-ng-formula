@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.4'
+ruby '2.3.5'
 
 gem 'test-kitchen'
 gem 'kitchen-docker'

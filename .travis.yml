@@ -2,7 +2,7 @@ language: ruby
 sudo: required
 cache: bundler
 rvm:
-  - 2.3.4
+  - 2.3.5
 services:
   - docker
 script:
