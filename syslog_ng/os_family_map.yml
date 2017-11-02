@@ -205,14 +205,17 @@ Debian:
       - source: =s_src
       - filter: =f_news
       - filter: =f_crit
+      - destination: =d_newscrit
     -
       - source: =s_src
       - filter: =f_news
       - filter: =f_err
+      - destination: =d_newserr
     -
       - source: =s_src
       - filter: =f_news
       - filter: =f_notice
+      - destination: =d_newsnotice
     -
       - source: =s_src
       - filter: =f_debug
@@ -229,6 +232,7 @@ Debian:
       - source: =s_src
       - filter: =f_console
       - destination: =d_console_all
+      - destination: =d_xconsole
     -
       - source: =s_src
       - filter: =f_crit
