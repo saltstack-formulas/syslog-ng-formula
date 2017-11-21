@@ -13,4 +13,3 @@ syslog_ng.conf:
     - mode: 644
     - watch_in:
       - service: syslog_ng
-  

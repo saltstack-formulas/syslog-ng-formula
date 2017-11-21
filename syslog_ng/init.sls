@@ -9,4 +9,3 @@ syslog_ng:
     - name: {{ syslog_ng.service }}
     - watch:
       - pkg: syslog_ng
-
