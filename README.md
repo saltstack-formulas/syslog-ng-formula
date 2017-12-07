@@ -15,3 +15,5 @@ Note: See the full [Salt Formulas installation and usage instructions](http://do
 ## Available pillars
 
 You can take a loot at [`pillar.example`](https://github.com/saltstack-formulas/syslog-ng-formula/blob/master/pillar.example) to configure SyslogNG with pillars.
+
+**Note:** if the first character of a string is '=' the string is treated as a literal (not ecapsulated in quotes)
