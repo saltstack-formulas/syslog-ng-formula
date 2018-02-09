@@ -7,4 +7,4 @@ license: MIT
 summary: SyslogNG Compliance Profile
 version: 0.1.0
 supports:
-  - os-name: debian
+  - os-family: linux
