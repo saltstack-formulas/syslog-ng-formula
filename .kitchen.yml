@@ -49,7 +49,7 @@ platforms:
 
 verifier:
   name: inspec
-  format: progress
+  reporter: progress
 
 suites:
   - name: syslog_ng
