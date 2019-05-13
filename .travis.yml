@@ -15,12 +15,13 @@ services:
 # the `platforms` defined in `kitchen.yml`
 env:
   matrix:
-    - DISTRIB=debian:jessie/8
-    - DISTRIB=debian:stretch/9
-    - DISTRIB=ubuntu:xenial/16.04
+    - INSTANCE: debian-9
+    - INSTANCE: debian-8
+    - INSTANCE: ubuntu-1804
+    - INSTANCE: ubuntu-1604
 
 script:
-  - bundle exec kitchen test
+  - bundle exec kitchen verify ${INSTANCE}
 
 jobs:
   include:

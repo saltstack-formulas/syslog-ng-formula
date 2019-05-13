@@ -1,56 +1,77 @@
-<%
-distrib, infos    = ENV.fetch('DISTRIB', 'debian:stretch/9').split(':')
-codename, version = infos.split('/')
-%>
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
 ---
+# For help on this file's format, see https://kitchen.ci/
 driver:
   name: docker
   use_sudo: false
+  privileged: true
+  run_command: /lib/systemd/systemd
+
+# Make sure the platforms listed below match up with
+# the `env.matrix` instances defined in `.travis.yml`
+platforms:
+  - name: debian-9
+    driver_config:
+      image: debian:9
+      provision_command:
+        - apt-get update && apt-get install -y udev locales
+        - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+        - locale-gen en_US.UTF-8
+      platform: debian
+
+  - name: debian-8
+    driver_config:
+      image: debian:8
+      provision_command:
+        - apt-get update && apt-get install -y udev locales
+        - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+        - locale-gen en_US.UTF-8
+      platform: debian
+
+  - name: ubuntu-18.04
+    driver_config:
+      image: ubuntu:18.04
+      provision_command:
+        - apt-get update && apt-get install -y udev locales && rm -rf /var/lib/apt/lists/*
+        - localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+        - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+        - locale-gen en_US.UTF-8
+      platform: ubuntu
+
+  - name: ubuntu-16.04
+    driver_config:
+      image: ubuntu:16.04
+      provision_command:
+        - apt-get update && apt-get install -y udev locales && rm -rf /var/lib/apt/lists/*
+        - localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+        - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+        - locale-gen en_US.UTF-8
+      platform: ubuntu
 
 provisioner:
   name: salt_solo
-  formula: syslog_ng
-
-  # Install Salt from official repositories
-  salt_install: apt
+  log_level: info
   salt_version: latest
-  salt_apt_repo: http://repo.saltstack.com/apt/<%= distrib %>/<%= version %>/amd64
-  salt_apt_repo_key: http://repo.saltstack.com/apt/<%= distrib %>/<%= version %>/amd64/latest/SALTSTACK-GPG-KEY.pub
-
-  # Don't install Chef
   require_chef: false
-
-  # Configure Salt
+  formula: syslog_ng
+  salt_copy_filter:
+    - .kitchen
+    - .git
   state_top:
     base:
       '*':
         - syslog_ng.config
 
-<% if %w[wheezy jessie xenial].include?(codename) %>
-  pillars:
-    top.sls:
-      base:
-        '*':
-          - syslog_ng
-    syslog_ng.sls:
-      syslog_ng:
-        source:
-          - s_src:
-            - unix-stream:
-              - /dev/log
-            - internal: null
-<% end %>
-
-platforms:
-  - name: <%= distrib %>-<%= codename %>
-    driver_config:
-      image: "<%= distrib %>:<%= codename %>"
-      platform: <%= distrib %>
-
 verifier:
+  # https://www.inspec.io/
   name: inspec
+  sudo: true
+  # cli, documentation, html, progress, json, json-min, json-rspec, junit
   reporter:
-    - progress
+    - cli
+  inspec_tests:
+    - path: test/integration/syslog_ng
 
 suites:
-  - name: syslog_ng
+  - name: default
