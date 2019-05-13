@@ -34,7 +34,6 @@ jobs:
         - npm install @commitlint/config-conventional -D
         - npm install @commitlint/travis-cli -D
         - commitlint-travis
-
     # Define the release stage that runs semantic-release
     - stage: release
       language: node_js

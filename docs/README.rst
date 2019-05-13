@@ -1,14 +1,14 @@
 .. _readme:
 
-syslog_ng-formula
-================
+syslog-ng-formula
+=================
 
 |img_travis| |img_sr|
 
-.. |img_travis| image:: https://travis-ci.com/saltstack-formulas/syslog_ng-formula.svg?branch=master
+.. |img_travis| image:: https://travis-ci.com/saltstack-formulas/syslog-ng-formula.svg?branch=master
    :alt: Travis CI Build Status
    :scale: 100%
-   :target: https://travis-ci.com/saltstack-formulas/syslog_ng-formula
+   :target: https://travis-ci.com/saltstack-formulas/syslog-ng-formula
 .. |img_sr| image:: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
    :alt: Semantic Release
    :scale: 100%
@@ -46,13 +46,43 @@ Available states
     :local:
 
 ``syslog_ng``
-----------
+-------------
 Installs and configures the syslog_ng package.
 
 ``syslog_ng.packages``
-----------
+----------------------
 Installs the syslog_ng package and optional packages which may provide additional functionalities.
 
 ``syslog_ng.config``
------------------
-This state manages the file ``syslog_ng.conf`` under ``/etc`` (template found in "syslog_ng/files"). The configuration is populated by values in "syslog_ng/map.jinja" based on the package's default values (and RedHat, Debian, Suse and Arch family distribution specific values), which can then be overridden by values of the same name in pillar.
+--------------------
+This state manages the file ``syslog_ng.conf`` under ``/etc/syslog-ng`` (template found in "syslog_ng/files"). The configuration is populated by values in "syslog_ng/map.jinja" based on the package's default values (and RedHat, Debian, Suse and Arch family distribution specific values), which can then be overridden by values of the same name in pillar.
+
+Testing
+-------
+
+Linux testing is done with ``kitchen-salt``.
+
+``kitchen converge``
+^^^^^^^^^^^^^^^^^^^^
+
+Creates the docker instance and runs the ``template`` main state, ready for testing.
+
+``kitchen verify``
+^^^^^^^^^^^^^^^^^^
+
+Runs the ``inspec`` tests on the actual instance.
+
+``kitchen destroy``
+^^^^^^^^^^^^^^^^^^^
+
+Removes the docker instance.
+
+``kitchen test``
+^^^^^^^^^^^^^^^^
+
+Runs all of the stages above in one go: i.e. ``destroy`` + ``converge`` + ``verify`` + ``destroy``.
+
+``kitchen login``
+^^^^^^^^^^^^^^^^^
+
+Gives you SSH access to the instance for manual testing.
