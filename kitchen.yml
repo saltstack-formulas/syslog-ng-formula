@@ -71,7 +71,7 @@ verifier:
   reporter:
     - cli
   inspec_tests:
-    - path: test/integration/syslog_ng
+    - path: test/integration/default
 
 suites:
   - name: default
