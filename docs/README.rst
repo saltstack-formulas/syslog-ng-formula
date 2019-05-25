@@ -40,21 +40,21 @@ Contributing to this repo
 Please see :ref:`How to contribute <CONTRIBUTING>` for more details.
 
 Available states
-================
+----------------
 
 .. contents::
     :local:
 
 ``syslog_ng``
--------------
+^^^^^^^^^^^^^
 Installs and configures the syslog_ng package.
 
 ``syslog_ng.packages``
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 Installs the syslog_ng package and optional packages which may provide additional functionalities.
 
 ``syslog_ng.config``
---------------------
+^^^^^^^^^^^^^^^^^^^^
 This state manages the file ``syslog_ng.conf`` under ``/etc/syslog-ng`` (template found in "syslog_ng/files"). The configuration is populated by values in "syslog_ng/map.jinja" based on the package's default values (and RedHat, Debian, Suse and Arch family distribution specific values), which can then be overridden by values of the same name in pillar.
 
 Testing
