@@ -1,10 +1,12 @@
 name: syslog_ng
-title: SyslogNG Profile
+title: SyslogNG Formula
 maintainer: Nicolas Rodriguez
-copyright: Nicolas Rodriguez
-copyright_email: nicoladmin@free.fr
-license: MIT
-summary: SyslogNG Compliance Profile
-version: 0.1.0
+license: Apache-2.0
+summary: Verify that the syslog_ng formula is setup and configured correctly
 supports:
-  - os-family: linux
+  - os-name: debian
+  - os-name: ubuntu
+  - os-name: centos
+  - os-name: fedora
+  - os-name: opensuse
+  - os-name: suse
