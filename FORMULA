@@ -1,0 +1,9 @@
+name: syslog_ng
+os: Debian, Ubuntu, RedHat, Fedora, CentOS, Suse, openSUSE
+os_family: Debian, RedHat, Suse
+version: 1.0
+release: 1
+minimum_version: 2017.7
+summary: Syslog-NG formula
+description: Formula to use to install and configure syslog_ng
+top_level_dir: syslog_ng
