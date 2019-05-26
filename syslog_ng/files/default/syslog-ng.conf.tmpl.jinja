@@ -1,24 +1,23 @@
 {%- from "syslog_ng/macro.jinja" import rule_builder -%}
-{%- from "syslog_ng/map.jinja" import syslog_ng with context -%}
 
-@version: {{ syslog_ng.get('version', '3.3') }}
+@version: {{ syslog_ng_config.get('version', '3.3') }}
 
-{%- for module in syslog_ng.get('module', []) %}
+{%- for module in syslog_ng_config.get('module', []) %}
 @module {{ rule_builder(module) }}
 {%- endfor %}
 
-{%- for inc in syslog_ng.get('include', []) %}
+{%- for inc in syslog_ng_config.get('include', []) %}
 @include {{ rule_builder(inc) }}
 {%- endfor %}
 
 options {
-{%- for rule in syslog_ng.get('options', []) %}
+{%- for rule in syslog_ng_config.get('options', []) %}
   {{ rule_builder(rule) }};
 {%- endfor %}
 };
 
 {%- for obj in ('source', 'destination', 'filter', 'parser', 'rewrite', 'template') %}
-{%- for params in syslog_ng.get(obj, []) %}
+{%- for params in syslog_ng_config.get(obj, []) %}
 {% for name, rules in params.items() %}
 {{ obj }} {{ name }} {
   {%- for rule in rules %}
@@ -29,7 +28,7 @@ options {
 {%- endfor %}
 {%- endfor %}
 
-{% for loggers in syslog_ng.get('log', []) -%}
+{% for loggers in syslog_ng_config.get('log', []) -%}
 log {
   {%- for rule in loggers %}
   {{ rule_builder(rule) }};
@@ -38,6 +37,6 @@ log {
 
 {% endfor %}
 
-{%- for inc in syslog_ng.get('last_include', []) %}
+{%- for inc in syslog_ng_config.get('last_include', []) %}
 @include {{ rule_builder(inc) }}
 {%- endfor %}

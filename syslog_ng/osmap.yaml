@@ -1,0 +1,8 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+Debian: {}
+Ubuntu: {}
+Fedora: {}
+CentOS: {}
+openSUSE: {}

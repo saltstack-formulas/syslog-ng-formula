@@ -19,6 +19,9 @@ platforms:
         - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
         - locale-gen en_US.UTF-8
       platform: debian
+    provisioner:
+      pillars_from_files:
+        syslog_ng.sls: test/salt/pillar/debian.sls
 
   - name: debian-8
     driver_config:
@@ -28,6 +31,9 @@ platforms:
         - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
         - locale-gen en_US.UTF-8
       platform: debian
+    provisioner:
+      pillars_from_files:
+        syslog_ng.sls: test/salt/pillar/debian.sls
 
   - name: ubuntu-18.04
     driver_config:
@@ -38,6 +44,9 @@ platforms:
         - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
         - locale-gen en_US.UTF-8
       platform: ubuntu
+    provisioner:
+      pillars_from_files:
+        syslog_ng.sls: test/salt/pillar/debian.sls
 
   - name: ubuntu-16.04
     driver_config:
@@ -48,6 +57,9 @@ platforms:
         - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
         - locale-gen en_US.UTF-8
       platform: ubuntu
+    provisioner:
+      pillars_from_files:
+        syslog_ng.sls: test/salt/pillar/debian.sls
 
 provisioner:
   name: salt_solo
@@ -62,6 +74,11 @@ provisioner:
     base:
       '*':
         - syslog_ng.config
+  pillars:
+    top.sls:
+      base:
+        '*':
+          - syslog_ng
 
 verifier:
   # https://www.inspec.io/
