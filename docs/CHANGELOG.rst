@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`0.2.2 <https://github.com/saltstack-formulas/syslog-ng-formula/compare/v0.2.1...v0.2.2>`_ (2019-05-26)
+-----------------------------------------------------------------------------------------------------------
+
+Documentation
+^^^^^^^^^^^^^
+
+
+* **readme:** add testing requirements section (\ `06de318 <https://github.com/saltstack-formulas/syslog-ng-formula/commit/06de318>`_\ )
+
 `0.2.1 <https://github.com/saltstack-formulas/syslog-ng-formula/compare/v0.2.0...v0.2.1>`_ (2019-05-26)
 -----------------------------------------------------------------------------------------------------------
 
