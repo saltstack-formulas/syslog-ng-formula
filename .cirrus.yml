@@ -1,0 +1,10 @@
+docker_builder:
+  name: Test $INSTANCE
+  env:
+    matrix:
+      - INSTANCE: debian-9
+      - INSTANCE: debian-8
+      - INSTANCE: ubuntu-1804
+      - INSTANCE: ubuntu-1604
+  bundle_install_script: bundle install
+  verify_script: bundle exec kitchen verify $INSTANCE
