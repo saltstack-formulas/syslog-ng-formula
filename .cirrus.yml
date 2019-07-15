@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
 docker_builder:
-  name: Test $INSTANCE
+  name: Test ${INSTANCE}
   env:
     matrix:
       - INSTANCE: default-debian-9-develop-py3
@@ -16,15 +19,11 @@ docker_builder:
       # - INSTANCE: default-ubuntu-1604-2018-3-py2
       # - INSTANCE: default-centos-7-2018-3-py2
       # - INSTANCE: default-fedora-29-2018-3-py2
-      # TODO: Use this when fixed instead of `opensuse-leap-42`
-      # Ref: https://github.com/netmanagers/salt-image-builder/issues/2
-      # - INSTANCE: default-opensuse-leap-15-2018-3-py2
       # - INSTANCE: default-opensuse-leap-42-2018-3-py2
       # - INSTANCE: default-debian-8-2017-7-py2
       # - INSTANCE: default-ubuntu-1604-2017-7-py2
-      # TODO: Enable after improving the formula to work with other than `systemd`
       # - INSTANCE: default-centos-6-2017-7-py2
       # - INSTANCE: default-fedora-28-2017-7-py2
       # - INSTANCE: default-opensuse-leap-42-2017-7-py2
   bundle_install_script: bundle install
-  verify_script: bundle exec kitchen verify $INSTANCE
+  verify_script: bin/kitchen verify ${INSTANCE}
