@@ -26,4 +26,5 @@ docker_builder:
       # - INSTANCE: default-fedora-28-2017-7-py2
       # - INSTANCE: default-opensuse-leap-42-2017-7-py2
   bundle_install_script: bundle install
-  verify_script: bin/kitchen verify ${INSTANCE}
+  verify_script:
+    - bin/kitchen verify ${INSTANCE}
