@@ -1,5 +1,18 @@
 # Changelog
 
+# [0.3.0](https://github.com/saltstack-formulas/syslog-ng-formula/compare/v0.2.2...v0.3.0) (2019-08-17)
+
+
+### Continuous Integration
+
+* **cirrus:** use cirrus-ci alongisde travis-ci ([51271b6](https://github.com/saltstack-formulas/syslog-ng-formula/commit/51271b6))
+* **kitchen+travis:** modify matrix to include `develop` platform ([b47b992](https://github.com/saltstack-formulas/syslog-ng-formula/commit/b47b992))
+
+
+### Features
+
+* **yamllint:** include for this repo and apply rules throughout ([a81ae52](https://github.com/saltstack-formulas/syslog-ng-formula/commit/a81ae52))
+
 ## [0.2.2](https://github.com/saltstack-formulas/syslog-ng-formula/compare/v0.2.1...v0.2.2) (2019-05-26)
 
 
