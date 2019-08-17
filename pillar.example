@@ -1,61 +1,64 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
 syslog_ng:
   module:
-  - tfson
+    - tfson
   include:
-  - scl.conf
+    - scl.conf
   last_include:
-  - /etc/syslog-ng/conf.d/*.conf
+    - /etc/syslog-ng/conf.d/*.conf
   version: 3.5
   options:
-  - threaded: yes
-  - use_dns: no
-  - use_fqdn: yes
-  - keep_hostname: yes
-  - chain_hostnames: no
-  - check_hostname: no
+    - threaded: true
+    - use_dns: false
+    - use_fqdn: true
+    - keep_hostname: true
+    - chain_hostnames: false
+    - check_hostname: false
   source:
-  - s_internal:
-    - internal: null
-  - s_local:
-    - unix-stream: /dev/log
-    - file:
-      - /proc/kmsg
-      - program_override: kernel
+    - s_internal:
+        - internal: null
+    - s_local:
+        - unix-stream: /dev/log
+        - file:
+            - /proc/kmsg
+            - program_override: kernel
   destination:
-  - df_messages:
-    - file:
-      - /var/log/messages
-  - df_secure:
-    - file: /var/log/secure
-  - df_console:
-    - usertty: root
-  - dp_devnull:
-    - program: /bin/cat >/dev/null
-  - dr_central:
-    - syslog: my-remote.example.com
+    - df_messages:
+        - file:
+            - /var/log/messages
+    - df_secure:
+        - file: /var/log/secure
+    - df_console:
+        - usertty: root
+    - dp_devnull:
+        - program: /bin/cat >/dev/null
+    - dr_central:
+        - syslog: my-remote.example.com
   filter:
-  - f_messages:
-    - level: =info..emerg
-  - f_secure:
-    - facility: =authpriv
-  - f_emerg:
-    - level: =emerg
-    - facility: =uucp, news
+    - f_messages:
+        - level: =info..emerg
+    - f_secure:
+        - facility: =authpriv
+    - f_emerg:
+        - level: =emerg
+        - facility: =uucp, news
   log:
-  -
-    - source: =s_internal
-    - source: =s_local
-    - destination: =dr_central
-  -
-    - source: =s_local
-    - filter: =f_emerg
-    - destination: =df_console
-  -
-    - source: =s_local
-    - filter: =f_secure
-    - destination: =df_secure
-    - flags: =final
-  -
-    - source: =s_local
-    - filter: =f_messages
-    - destination: =df_messages
+    -
+      - source: =s_internal
+      - source: =s_local
+      - destination: =dr_central
+    -
+      - source: =s_local
+      - filter: =f_emerg
+      - destination: =df_console
+    -
+      - source: =s_local
+      - filter: =f_secure
+      - destination: =df_secure
+      - flags: =final
+    -
+      - source: =s_local
+      - filter: =f_messages
+      - destination: =df_messages
