@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
+dist: bionic
 stages:
   - lint
   - name: release
