@@ -13,7 +13,6 @@ syslog_ng:
 
   source:
     - s_src:
-      - system: null
       - internal: null
 
   destination:

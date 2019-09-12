@@ -55,3 +55,7 @@ Leap-15:
     - scl.conf
   last_include:
     - /etc/syslog-ng/conf.d/
+
+# CentOS
+CentOS-6:
+  version: 3.2
