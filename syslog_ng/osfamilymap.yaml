@@ -1,20 +1,5 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
-Debian:
-  package: syslog-ng
-  service: syslog-ng
-  syslog_ng_config: /etc/syslog-ng/syslog-ng.conf
-  syslog_ng_config_src: salt://syslog_ng/files/syslog-ng.conf
-
 Gentoo:
   package: app-admin/syslog-ng
-  service: syslog-ng
-  syslog_ng_config: /etc/syslog-ng/syslog-ng.conf
-  syslog_ng_config_src: salt://syslog_ng/files/syslog-ng.conf
-
-RedHat:
-  package: syslog-ng
-  service: syslog-ng
-  syslog_ng_config: /etc/syslog-ng/syslog-ng.conf
-  syslog_ng_config_src: salt://syslog_ng/files/syslog-ng.conf

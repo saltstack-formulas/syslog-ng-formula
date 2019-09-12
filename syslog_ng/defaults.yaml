@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
-syslog_ng: {}
+syslog_ng:
+  package: syslog-ng
+  service: syslog-ng
+  syslog_ng_config: /etc/syslog-ng/syslog-ng.conf
+  syslog_ng_config_src: salt://syslog_ng/files/syslog-ng.conf
