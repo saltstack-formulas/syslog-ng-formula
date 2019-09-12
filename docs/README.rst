@@ -49,13 +49,17 @@ Available states
 ^^^^^^^^^^^^^
 Installs and configures the syslog_ng package.
 
-``syslog_ng.packages``
+``syslog_ng.package``
 ^^^^^^^^^^^^^^^^^^^^^^
 Installs the syslog_ng package and optional packages which may provide additional functionalities.
 
 ``syslog_ng.config``
 ^^^^^^^^^^^^^^^^^^^^
 This state manages the file ``syslog_ng.conf`` under ``/etc/syslog-ng`` (template found in "syslog_ng/files"). The configuration is populated by values in "syslog_ng/map.jinja" based on the package's default values (and RedHat, Debian, Suse and Arch family distribution specific values), which can then be overridden by values of the same name in pillar.
+
+``syslog_ng.service``
+^^^^^^^^^^^^^^^^^^^^
+Manages the startup and running state of the syslog_ng service.
 
 Testing
 -------
@@ -72,32 +76,32 @@ Requirements
 
    $ gem install bundler
    $ bundle install
-   $ bundle exec kitchen test [platform]
+   $ bin/kitchen test [platform]
 
 Where ``[platform]`` is the platform name defined in ``kitchen.yml``,
 e.g. ``debian-9-2019-2-py3``.
 
-``kitchen converge``
-^^^^^^^^^^^^^^^^^^^^
+``bin/kitchen converge``
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-Creates the docker instance and runs the ``template`` main state, ready for testing.
+Creates the docker instance and runs the ``syslog_ng`` main state, ready for testing.
 
-``kitchen verify``
-^^^^^^^^^^^^^^^^^^
+``bin/kitchen verify``
+^^^^^^^^^^^^^^^^^^^^^^
 
 Runs the ``inspec`` tests on the actual instance.
 
-``kitchen destroy``
-^^^^^^^^^^^^^^^^^^^
+``bin/kitchen destroy``
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Removes the docker instance.
 
-``kitchen test``
-^^^^^^^^^^^^^^^^
+``bin/kitchen test``
+^^^^^^^^^^^^^^^^^^^^
 
 Runs all of the stages above in one go: i.e. ``destroy`` + ``converge`` + ``verify`` + ``destroy``.
 
-``kitchen login``
-^^^^^^^^^^^^^^^^^
+``bin/kitchen login``
+^^^^^^^^^^^^^^^^^^^^^
 
 Gives you SSH access to the instance for manual testing.

@@ -154,7 +154,7 @@ suites:
       state_top:
         base:
           '*':
-            - syslog_ng.config
+            - syslog_ng
       pillars:
         top.sls:
           base:
