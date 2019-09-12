@@ -1,21 +1,49 @@
 # -*- coding: utf-8 -*-
 # vim: ft=jinja
 
-{% import_yaml "syslog_ng/defaults.yml" as defaults %}
-{% import_yaml "syslog_ng/os_family_map.yml" as os_family_map %}
-{% import_yaml "syslog_ng/os_codename_map.yml" as os_codename_map %}
+{#- Get the `tplroot` from `tpldir` #}
+{%- set tplroot = tpldir.split('/')[0] %}
+{#- Start imports as #}
+{%- import_yaml tplroot ~ "/defaults.yaml" as default_settings %}
+{%- import_yaml tplroot ~ "/osarchmap.yaml" as osarchmap %}
+{%- import_yaml tplroot ~ "/osfamilymap.yaml" as osfamilymap %}
+{%- import_yaml tplroot ~ "/osmap.yaml" as osmap %}
+{%- import_yaml tplroot ~ "/osfingermap.yaml" as osfingermap %}
 
-{# get the settings for the os_family grain #}
-{% set osfam = salt['grains.filter_by'](os_family_map) or {} %}
+{#- Retrieve the config dict only once #}
+{%- set _config = salt['config.get'](tplroot, default={}) %}
 
-{# get the settings for the oscodename grain, os_family data will override oscodename data #}
-{% set oscode = salt['grains.filter_by'](os_codename_map, grain='oscodename', merge=osfam) or {} %}
+{%- set defaults = salt['grains.filter_by'](
+      default_settings,
+      default=tplroot,
+      merge=salt['grains.filter_by'](
+        osarchmap,
+        grain='osarch',
+        merge=salt['grains.filter_by'](
+          osfamilymap,
+          grain='os_family',
+          merge=salt['grains.filter_by'](
+            osmap,
+            grain='os',
+            merge=salt['grains.filter_by'](
+              osfingermap,
+              grain='osfinger',
+              merge=salt['grains.filter_by'](
+                _config,
+                default='lookup'
+              )
+            )
+          )
+        )
+      )
+    )
+%}
 
-{# merge the os family/os codename specific data over the defaults #}
-{% do defaults.syslog_ng.update(oscode) %}
+{%- set config = salt['grains.filter_by'](
+      {'defaults': defaults},
+      default='defaults',
+      merge=_config
+    )
+%}
 
-{# merge the pillar:lookup dict into the defaults/os specific dict #}
-{% set lookup = salt['pillar.get']('syslog_ng:lookup', default=defaults.syslog_ng, merge=True) %}
-
-{# merge the actual syslog_ng pillar into the above combined dict #}
-{% set syslog_ng = salt['pillar.get']('syslog_ng', default=lookup, merge=True) %}
+{%- set syslog_ng = config %}

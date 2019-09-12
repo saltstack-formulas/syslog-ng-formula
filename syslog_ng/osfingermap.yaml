@@ -2,7 +2,7 @@
 # vim: ft=yaml
 ---
 # Debian
-wheezy:
+Debian-7:
   version: 3.3
   include:
     - scl.conf
@@ -10,7 +10,7 @@ wheezy:
   last_include:
     - /etc/syslog-ng/conf.d/
 
-jessie:
+Debian-8:
   version: 3.5
   include:
     - scl.conf
@@ -18,18 +18,32 @@ jessie:
   last_include:
     - /etc/syslog-ng/conf.d/*.conf
 
-stretch:
+Debian-9:
   version: 3.8
   include:
     - scl.conf
   last_include:
     - /etc/syslog-ng/conf.d/*.conf
 
+Debian-10:
+  version: 3.12
+  include:
+    - scl.conf
+  last_include:
+    - /etc/syslog-ng/conf.d/*.conf
+
 # Ubuntu
-xenial:
+Ubuntu-16.04:
   version: 3.5
   include:
     - scl.conf
     - '`scl-root`/system/tty10.conf'
+  last_include:
+    - /etc/syslog-ng/conf.d/*.conf
+
+Ubuntu-18.04:
+  version: 3.13
+  include:
+    - scl.conf
   last_include:
     - /etc/syslog-ng/conf.d/*.conf
