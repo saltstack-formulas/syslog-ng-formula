@@ -161,7 +161,7 @@ suites:
             '*':
               - syslog_ng
       pillars_from_files:
-        syslog_ng.sls: pillar.example
+        syslog_ng.sls: test/salt/pillar/syslog_ng.sls
     verifier:
       inspec_tests:
         - path: test/integration/default
