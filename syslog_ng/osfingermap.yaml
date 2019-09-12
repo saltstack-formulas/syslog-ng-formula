@@ -47,3 +47,11 @@ Ubuntu-18.04:
     - scl.conf
   last_include:
     - /etc/syslog-ng/conf.d/*.conf
+
+# Suse
+Leap-15:
+  version: 3.19
+  include:
+    - scl.conf
+  last_include:
+    - /etc/syslog-ng/conf.d/
