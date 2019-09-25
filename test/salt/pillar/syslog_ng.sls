@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
 ---
 syslog_ng:
   options:
-    - chain_hostnames: no
+    - chain_hostnames: false
     - flush_lines: 0
-    - use_dns: no
-    - use_fqdn: no
+    - use_dns: false
+    - use_fqdn: false
     - owner: root
     - group: adm
     - perm: =0640
@@ -13,16 +15,16 @@ syslog_ng:
 
   source:
     - s_src:
-      - internal: null
+        - internal: null
 
   destination:
     - d_syslog:
-      - file:
-          - /var/log/syslog
+        - file:
+            - /var/log/syslog
 
   filter:
     - f_syslog3:
-      - =not level(debug)
+        - =not level(debug)
 
   log:
     -
