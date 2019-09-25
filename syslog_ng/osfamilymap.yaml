@@ -3,3 +3,6 @@
 ---
 Gentoo:
   package: app-admin/syslog-ng
+
+Arch:
+  service: syslog-ng@default.service
