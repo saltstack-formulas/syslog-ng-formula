@@ -5,6 +5,7 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- set sls_package_install = tplroot ~ '.package.install' %}
 {%- from tplroot ~ "/map.jinja" import syslog_ng with context %}
+{%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
 include:
   - {{ sls_package_install }}
@@ -12,7 +13,10 @@ include:
 syslog_ng/config/install:
   file.managed:
     - name: {{ syslog_ng.syslog_ng_config }}
-    - source: {{ syslog_ng.syslog_ng_config_src }}
+    - source: {{ files_switch(['syslog-ng.conf'],
+                              lookup='syslog_ng/config/install'
+                 )
+              }}
     - template: jinja
     - user: root
     - group: root
