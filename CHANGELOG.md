@@ -1,5 +1,17 @@
 # Changelog
 
+# [0.5.0](https://github.com/saltstack-formulas/syslog-ng-formula/compare/v0.4.0...v0.5.0) (2019-10-01)
+
+
+### Bug Fixes
+
+* **pillar:** rearrange `tofs` block to avoid `yamllint` error ([7c4dd84](https://github.com/saltstack-formulas/syslog-ng-formula/commit/7c4dd84))
+
+
+### Features
+
+* **tofs:** add TOFS support ([6a6f255](https://github.com/saltstack-formulas/syslog-ng-formula/commit/6a6f255))
+
 # [0.4.0](https://github.com/saltstack-formulas/syslog-ng-formula/compare/v0.3.0...v0.4.0) (2019-09-30)
 
 
