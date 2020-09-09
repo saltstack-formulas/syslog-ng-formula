@@ -13,5 +13,5 @@ syslog_ng/service/running:
   service.running:
     - name: {{ syslog_ng.service }}
     - enable: true
-    - require:
+    - watch:
       - sls: {{ sls_config_file }}
