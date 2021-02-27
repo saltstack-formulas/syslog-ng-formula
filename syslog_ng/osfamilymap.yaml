@@ -3,6 +3,7 @@
 ---
 Gentoo:
   package: app-admin/syslog-ng
+  service: {{ 'syslog-ng@default' if grains.init == 'systemd' else 'syslog-ng' }}
 
 Arch:
   service: syslog-ng@default.service
