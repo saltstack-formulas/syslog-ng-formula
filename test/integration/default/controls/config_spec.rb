@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 control 'SyslogNG configuration' do
   title 'should match desired lines'
 
   str =
-    '''
+    '
 source s_src {
   internal();
 };
@@ -20,7 +22,7 @@ log {
   filter(f_syslog3);
   destination(d_syslog);
 };
-'''
+'
 
   describe file('/etc/syslog-ng/syslog-ng.conf') do
     it { should exist }

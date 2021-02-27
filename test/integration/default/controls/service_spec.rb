@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 syslogng_service =
   case platform[:name]
   when 'arch'
@@ -12,5 +14,4 @@ control 'SyslogNG service' do
     it { should be_enabled }
     it { should be_running }
   end
-
 end
