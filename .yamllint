@@ -16,6 +16,7 @@ ignore: |
   node_modules/
   test/**/states/**/*.sls
   .kitchen/
+  syslog_ng/osfamilymap.yaml
 
 yaml-files:
   # Default settings
