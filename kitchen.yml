@@ -312,6 +312,7 @@ suites:
       state_top:
         base:
           '*':
+            - syslog_ng._mapdata
             - syslog_ng
       pillars:
         top.sls:
