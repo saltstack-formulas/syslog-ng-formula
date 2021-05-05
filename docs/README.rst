@@ -1,5 +1,3 @@
-.. _readme:
-
 syslog-ng-formula
 =================
 
@@ -50,7 +48,7 @@ Available states
 Installs and configures the syslog_ng package.
 
 ``syslog_ng.package``
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 Installs the syslog_ng package and optional packages which may provide additional functionalities.
 
 ``syslog_ng.config``
@@ -58,7 +56,7 @@ Installs the syslog_ng package and optional packages which may provide additiona
 This state manages the file ``syslog_ng.conf`` under ``/etc/syslog-ng`` (template found in "syslog_ng/files"). The configuration is populated by values in "syslog_ng/map.jinja" based on the package's default values (and RedHat, Debian, Suse and Arch family distribution specific values), which can then be overridden by values of the same name in pillar.
 
 ``syslog_ng.service``
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 Manages the startup and running state of the syslog_ng service.
 
 Testing
