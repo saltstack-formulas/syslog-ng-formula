@@ -3,7 +3,11 @@
 ---
 Gentoo:
   package: app-admin/syslog-ng
-  service: {{ 'syslog-ng@default' if grains.init == 'systemd' else 'syslog-ng' }}
+  service: {{ 'syslog-ng@default' if grains.get('init', 'unknown') == 'systemd' else 'syslog-ng' }}
 
 Arch:
   service: syslog-ng@default.service
+
+FreeBSD:
+  rootgroup: wheel
+  syslog_ng_config: /usr/local/etc/syslog-ng/syslog-ng.conf
