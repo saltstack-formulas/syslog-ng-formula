@@ -19,7 +19,7 @@ syslog_ng/config/install:
               }}
     - template: jinja
     - user: root
-    - group: root
+    - group: {{ syslog_ng.rootgroup }}
     - mode: 644
     - require:
       - sls: {{ sls_package_install }}

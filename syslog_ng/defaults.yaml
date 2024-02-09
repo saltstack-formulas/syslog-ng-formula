@@ -2,6 +2,7 @@
 # vim: ft=yaml
 ---
 syslog_ng:
+  rootgroup: root
   package: syslog-ng
   service: syslog-ng
   syslog_ng_config: /etc/syslog-ng/syslog-ng.conf
