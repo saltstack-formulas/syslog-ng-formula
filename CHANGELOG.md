@@ -1,5 +1,62 @@
 # Changelog
 
+# [0.6.0](https://github.com/saltstack-formulas/syslog-ng-formula/compare/v0.5.1...v0.6.0) (2025-06-16)
+
+
+### Bug Fixes
+
+* **osfingermap.yaml:** set syslog-ng version for Debian Bookworm ([0988aba](https://github.com/saltstack-formulas/syslog-ng-formula/commit/0988abac33e3c6f90ea3108734c6403af97e0a95))
+* **osfingermap.yaml:** set syslog-ng version for Debian Bullseye ([d9ef31a](https://github.com/saltstack-formulas/syslog-ng-formula/commit/d9ef31aa43a905dd778a760f85faec9b7f1423a9))
+
+
+### Continuous Integration
+
+* update `pre-commit` configuration inc. for pre-commit.ci [skip ci] ([c4adb02](https://github.com/saltstack-formulas/syslog-ng-formula/commit/c4adb02f9bf976549f475810b4005738635de9b3))
+* update linters to latest versions [skip ci] ([2618873](https://github.com/saltstack-formulas/syslog-ng-formula/commit/2618873180addd537910ef342d0473a77a8fbc78))
+* use latest test images ([d9514b0](https://github.com/saltstack-formulas/syslog-ng-formula/commit/d9514b0ce53465dd43daf08857e2cb109e368e79))
+* **3003.1:** update inc. AlmaLinux, Rocky & `rst-lint` [skip ci] ([affc7fd](https://github.com/saltstack-formulas/syslog-ng-formula/commit/affc7fd0653ef63fa6b187aa3ca529f4c1926e4b))
+* **commitlint:** ensure `upstream/master` uses main repo URL [skip ci] ([d5e555a](https://github.com/saltstack-formulas/syslog-ng-formula/commit/d5e555af6a0612d46ba30d510c25b1e26c0a5cf1))
+* **gemfile:** allow rubygems proxy to be provided as an env var [skip ci] ([ad7d546](https://github.com/saltstack-formulas/syslog-ng-formula/commit/ad7d546bc07d1b32aa35e692dbc81ae19b863580))
+* **gemfile+lock:** use `ssf` customised `inspec` repo [skip ci] ([4a16d6b](https://github.com/saltstack-formulas/syslog-ng-formula/commit/4a16d6b4ad48f4e108d286c02e7b316b4245e75c))
+* **gemfile+lock:** use `ssf` customised `kitchen-docker` repo [skip ci] ([464135e](https://github.com/saltstack-formulas/syslog-ng-formula/commit/464135e991f26daf59f6d7cfd11c7ec6632f5b44))
+* **gitlab-ci:** add `rubocop` linter (with `allow_failure`) [skip ci] ([c4bbce7](https://github.com/saltstack-formulas/syslog-ng-formula/commit/c4bbce71a42f22dee5fcb48ba65eec4b946cd94f))
+* **gitlab-ci:** use GitLab CI as Travis CI replacement ([a09511d](https://github.com/saltstack-formulas/syslog-ng-formula/commit/a09511dd1e892a6d5a4069c67f0b3be053c8685f))
+* **kitchen:** move `provisioner` block & update `run_command` [skip ci] ([c5c6142](https://github.com/saltstack-formulas/syslog-ng-formula/commit/c5c6142dff511ce1a87ec5bfd0a3f11f222fc2fc))
+* **kitchen+ci:** update with `3004` pre-salted images/boxes [skip ci] ([edf5b9c](https://github.com/saltstack-formulas/syslog-ng-formula/commit/edf5b9c1dc518d50b3fc33a3136404f3fa0a46ef))
+* **kitchen+ci:** update with latest `3003.2` pre-salted images [skip ci] ([8fc2589](https://github.com/saltstack-formulas/syslog-ng-formula/commit/8fc2589607fda2adf9bc9957f1c905767d73ef63))
+* **kitchen+ci:** update with latest CVE pre-salted images [skip ci] ([72b19f3](https://github.com/saltstack-formulas/syslog-ng-formula/commit/72b19f39a949fd2fbb86cef903f3a6b387e98311))
+* **kitchen+ci:** use latest pre-salted images (after CVE) [skip ci] ([a7dfcd4](https://github.com/saltstack-formulas/syslog-ng-formula/commit/a7dfcd43cc72c042516d8b0522d6900097961dbe))
+* **kitchen+gitlab:** adjust matrix to add `3003` [skip ci] ([7ced1a7](https://github.com/saltstack-formulas/syslog-ng-formula/commit/7ced1a7684988e9a677951caa7e3edb9c0fcf58c))
+* **kitchen+gitlab:** remove Ubuntu 16.04 & Fedora 32 (EOL) [skip ci] ([c2a64a5](https://github.com/saltstack-formulas/syslog-ng-formula/commit/c2a64a534ffdb00650016a66032615e27d90957c))
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] ([85ed779](https://github.com/saltstack-formulas/syslog-ng-formula/commit/85ed779e94b9882e070cedb27beadca907116603))
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] ([2a2dc5f](https://github.com/saltstack-formulas/syslog-ng-formula/commit/2a2dc5f3e50ea71678f73eb59f2d35ccad736a1c))
+* add `arch-master` to matrix and update `.travis.yml` [skip ci] ([6869801](https://github.com/saltstack-formulas/syslog-ng-formula/commit/68698019fcd827784342f6aa4b0d5d49ccb4b64a))
+* add Debian 11 Bullseye & update `yamllint` configuration [skip ci] ([99f2272](https://github.com/saltstack-formulas/syslog-ng-formula/commit/99f2272a7d75b2e8211ad59836c8393e716beaa0))
+* **kitchen+gitlab-ci:** use latest pre-salted images [skip ci] ([f1c7151](https://github.com/saltstack-formulas/syslog-ng-formula/commit/f1c71513d12b73d3877b412f4c5e7d347089bf46))
+* **pre-commit:** add to formula [skip ci] ([ffe3845](https://github.com/saltstack-formulas/syslog-ng-formula/commit/ffe3845746f21cb6c73709699c66a2df946b7d2c))
+* **pre-commit:** enable/disable `rstcheck` as relevant [skip ci] ([1d77079](https://github.com/saltstack-formulas/syslog-ng-formula/commit/1d77079272dff8ddd1be1f555791c08b3ace8e49))
+* **pre-commit:** finalise `rstcheck` configuration [skip ci] ([6c09627](https://github.com/saltstack-formulas/syslog-ng-formula/commit/6c09627324dca8cd3b911be9135746b11fee3764))
+* **pre-commit:** update hook for `rubocop` [skip ci] ([8f11ae5](https://github.com/saltstack-formulas/syslog-ng-formula/commit/8f11ae5e5b81ef1b7e9e82244514084978831926))
+
+
+### Documentation
+
+* **readme:** fix headings [skip ci] ([99b4c29](https://github.com/saltstack-formulas/syslog-ng-formula/commit/99b4c293f807bfeb509902c327743fe85a807b42))
+
+
+### Features
+
+* **FreeBSD:** add support ([653201f](https://github.com/saltstack-formulas/syslog-ng-formula/commit/653201f788c40f8c149b0416380e9ba372cac9c5))
+* **osfamilymap:** add support for Gentoo ([e39ec5e](https://github.com/saltstack-formulas/syslog-ng-formula/commit/e39ec5e0abd392c8dcf2361e74383ee52662d889))
+
+
+### Tests
+
+* **rubocop:** fix all violations ([afe8620](https://github.com/saltstack-formulas/syslog-ng-formula/commit/afe8620a55899bb0a713529c343e81580a4dba22))
+* **system:** add `build_platform_codename` [skip ci] ([6450505](https://github.com/saltstack-formulas/syslog-ng-formula/commit/645050597f198cba7f68788798e2c47dfd995a19))
+* **system.rb:** add support for `mac_os_x` [skip ci] ([d098cb6](https://github.com/saltstack-formulas/syslog-ng-formula/commit/d098cb6d4cec64e22a74dc9f8680365d2bb769e3))
+* standardise use of `share` suite & `_mapdata` state [skip ci] ([9e67b07](https://github.com/saltstack-formulas/syslog-ng-formula/commit/9e67b07cabfd5ee785fc9cf3cdb74bc7c239326d))
+
 ## [0.5.1](https://github.com/saltstack-formulas/syslog-ng-formula/compare/v0.5.0...v0.5.1) (2020-09-09)
 
 
