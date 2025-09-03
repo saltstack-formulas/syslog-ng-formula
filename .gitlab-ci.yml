@@ -15,15 +15,15 @@
   stage_test: &stage_test 'test'
   # `image`
   # yamllint disable rule:line-length
-  image_commitlint: &image_commitlint 'techneg/ci-commitlint:v1.1.97@sha256:7eaa2170f49cf9a8f2acd11a9fc35d4ec93c514935c6b76f7df8a39f9d2afb45'
-  image_dindruby: &image_dindruby 'techneg/ci-docker-python-ruby:v2.2.66@sha256:5a915fcebd0c32f54b4effcf1aa58ce03f78fc8e8b95e706183ec57c24c9337c'
-  image_dindrubybionic: &image_dindrubybionic 'techneg/ci-docker-python-ruby:v2.2.66@sha256:5a915fcebd0c32f54b4effcf1aa58ce03f78fc8e8b95e706183ec57c24c9337c'
-  image_precommit: &image_precommit 'techneg/ci-pre-commit:v2.4.31@sha256:041f7d716f4cde881e547881e6cc771d499ff424d0afb7ec678176ff0b940d0a'
+  image_commitlint: &image_commitlint 'techneg/ci-commitlint:v1.1.100@sha256:cdcfb678d97a38dc1bdb7010935e5e7e6515131812c76c32a78307860bf8193e'
+  image_dindruby: &image_dindruby 'techneg/ci-docker-python-ruby:v2.2.69@sha256:73b50339c27f37232edd5442ed02578dcca653bbac3c7335f6ccd576b5bbadf3'
+  image_dindrubybionic: &image_dindrubybionic 'techneg/ci-docker-python-ruby:v2.2.69@sha256:73b50339c27f37232edd5442ed02578dcca653bbac3c7335f6ccd576b5bbadf3'
+  image_precommit: &image_precommit 'techneg/ci-pre-commit:v2.5.2@sha256:af1cccdd8afe64bbeac5216e3c243e2c3f716f665edf8487a9e920cbfb85c1fb'
   image_rubocop: &image_rubocop 'pipelinecomponents/rubocop:latest@sha256:fe69f9642c7edde46bbd78326d2c42c6e13fc73694efb142e92e206725479328'
-  image_semantic-release: &image_semanticrelease 'myii/ssf-semantic-release:15.14@sha256:374f588420087517a3cc0235e11293bffd72d7a59da3d98d5e69f014ff2a7761'
+  image_semantic-release: &image_semanticrelease 'techneg/ci-semantic-release:v1.2.1@sha256:d23338a31ae979a4d15b9b4c68c3dea0795210956d2c43dc6eab1791483b7607'
   # `services`
   services_docker_dind: &services_docker_dind
-    - 'docker:28.3.2-dind@sha256:5415fccf3da3aed821efb2258cb7dcf52fb9bb0627b02d45338e887c352c4bce'
+    - 'docker:28.3.3-dind@sha256:c0872aae4791ff427e6eda52769afa04f17b5cf756f8267e0d52774c99d5c9de'
   # yamllint enable rule:line-length
   # `variables`
   # https://forum.gitlab.com/t/gitlab-com-ci-caching-rubygems/5627/3
@@ -94,15 +94,6 @@ commitlint:
     # Set default commit hashes for `--from` and `--to`
     - 'export COMMITLINT_FROM="$(git merge-base upstream/master HEAD)"'
     - 'export COMMITLINT_TO="${CI_COMMIT_SHA}"'
-    # `coqbot` adds a merge commit to test PRs on top of the latest commit in
-    # the repo; amend this merge commit message to avoid failure
-    - |
-      if [ "${GITLAB_USER_LOGIN}" = "coqbot" ] \
-      && [ "${CI_COMMIT_BRANCH}" != "master" ]; then
-        git commit --amend -m \
-          'chore: reword coqbot merge commit message for commitlint'
-        export COMMITLINT_TO=HEAD
-      fi
     # Run `commitlint`
     - 'commitlint --from "${COMMITLINT_FROM}"
                   --to   "${COMMITLINT_TO}"
@@ -226,13 +217,10 @@ ubuntu-2004-3006-14: {extends: '.test_instance'}
 # `release` stage: `semantic-release`
 ###############################################################################
 semantic-release:
-  only: *only_branch_master_parent_repo
   stage: *stage_release
   image: *image_semanticrelease
   variables:
     MAINTAINER_TOKEN: '${GH_TOKEN}'
   script:
-    # Update `AUTHORS.md`
-    - '${HOME}/go/bin/maintainer contributor'
     # Run `semantic-release`
     - 'semantic-release'

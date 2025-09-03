@@ -25,20 +25,20 @@ jobs:
     name: Lint / `pre-commit`
     needs: should-run
     if: fromJSON(needs.should-run.outputs.should-run)
-    container: techneg/ci-pre-commit:v2.4.31@sha256:041f7d716f4cde881e547881e6cc771d499ff424d0afb7ec678176ff0b940d0a
+    container: techneg/ci-pre-commit:v2.5.2@sha256:af1cccdd8afe64bbeac5216e3c243e2c3f716f665edf8487a9e920cbfb85c1fb
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - run: | # Needed because of bug #2031 in `actions/checkout`
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           fetch-depth: 0
           fetch-tags: true
           filter: tree:0
       - name: Export `CI_CACHE_ID` from container
         run: echo "CI_CACHE_ID=$(cat /.ci_cache_id)" >> $GITHUB_ENV
-      - uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+      - uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
         with:
           path: ~/.cache/pre-commit
           key: "${{ env.CI_CACHE_ID }}|\
@@ -58,10 +58,17 @@ jobs:
   results:
     name: Release / Collect results
     permissions:
+      contents: write
+      issues: write
+      pull-requests: write
       checks: read
+    container: techneg/ci-semantic-release:v1.2.1@sha256:d23338a31ae979a4d15b9b4c68c3dea0795210956d2c43dc6eab1791483b7607
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - run: |  # Needed due to bug actions/checkout#2031
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       # yamllint disable-line rule:line-length
       - uses: poseidon/wait-for-status-checks@899c768d191b56eef585c18f8558da19e1f3e707 # v0.6.0
         with:
@@ -69,4 +76,10 @@ jobs:
             Release / Collect results
           ignore_pattern: ^GitLab CI
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run `semantic-release`
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAINTAINER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          semantic-release --dry-run
       - run: echo "::notice ::Workflow success!"
