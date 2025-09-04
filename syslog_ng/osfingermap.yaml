@@ -46,6 +46,13 @@ Debian-12:
   last_include:
     - /etc/syslog-ng/conf.d/*.conf
 
+Debian-13:
+  version: 4.8
+  include:
+    - scl.conf
+  last_include:
+    - /etc/syslog-ng/conf.d/*.conf
+
 # Ubuntu
 Ubuntu-16.04:
   version: 3.5
