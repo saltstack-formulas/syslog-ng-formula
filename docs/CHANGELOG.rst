@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`0.6.1 <https://github.com/saltstack-formulas/syslog-ng-formula/compare/v0.6.0...v0.6.1>`_ (2025-09-04)
+-----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **osfingermap.yaml:** set syslog-ng version for Debian Trixie (\ `45a3620 <https://github.com/saltstack-formulas/syslog-ng-formula/commit/45a36204789baca3e6825b4f03babd82c073fa10>`_\ )
+
 `0.6.0 <https://github.com/saltstack-formulas/syslog-ng-formula/compare/v0.5.1...v0.6.0>`_ (2025-06-16)
 -----------------------------------------------------------------------------------------------------------
 
